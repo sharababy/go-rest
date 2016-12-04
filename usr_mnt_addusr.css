@@ -1,0 +1,51 @@
+body{
+	
+	background:#ddd;
+
+}
+
+
+box1{
+	position: absolute;
+	top:20%;
+	left:50%;
+	margin-left:-250px;
+	width:500px;
+	height:auto;
+	background-color: #888;
+	padding:1%;
+}
+
+box1 input{
+	margin-top:5%;
+	margin-left:150px;
+	width:200px;
+	height:25px;
+	font-family: Helvetica;
+	color:#000;
+	background-color: #eee;
+	border:none;
+	font-size: 0.8em;
+	border-radius:3px;
+
+}
+
+
+h2{
+	color: #fff;
+	font-size:1.5em;
+	text-align: center;
+	font-family: Helvetica;
+
+}
+
+box1 button{
+
+	width:50px;
+	height:25px;
+	background:#fff;
+	font-size: 0.7em;
+	color:#000;
+	margin-left:225px;
+	margin-top:5%;
+}

@@ -16,6 +16,10 @@ import(
 //	Every User can be fit into this common data type knows as User
 // More meta data to be added here ::..>
 
+const db string = "mongodb://sharababy666:x0988;xatsman@ds119578.mlab.com:19578/wandr"
+
+
+
 type User struct{ 
 
 	Name string `bson:"Name" json:"Name" `
@@ -49,7 +53,7 @@ func ReceiveJSON(w http.ResponseWriter , r *http.Request , _ httprouter.Params){
     //it returns a *mgo.Session type 
     //it establishes a session between the MongoDB instance and the golang app
 
-    session := CreateSession("mongodb://localhost:27017") 
+    session := CreateSession(db) 
 
     //Insert_User is a CRUD helper function that is defined in the db_adapter.go file
     //it take db name , collection name , session and User struct as input
@@ -96,7 +100,7 @@ func UpdateJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
     //it returns a *mgo.Session type 
     //it establishes a session between the MongoDB instance and the golang app
 
-    session := CreateSession("mongodb://localhost:27017")
+    session := CreateSession(db)
 
 
     //Update_User is a CRUD helper function that is defined in the db_adapter.go file
@@ -126,7 +130,7 @@ func DeleteJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
     //it returns a *mgo.Session type 
     //it establishes a session between the MongoDB instance and the golang app
 
-    session := CreateSession("mongodb://localhost:27017")
+    session := CreateSession(db)
 
 
     //Delete_User is a CRUD helper function that is defined in the db_adapter.go file
@@ -166,7 +170,7 @@ func FindJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
     //it returns a *mgo.Session type 
     //it establishes a session between the MongoDB instance and the golang app
 
-    session := CreateSession("mongodb://localhost:27017")
+    session := CreateSession(db)
 
 
     //Find_User is a CRUD helper function that is defined in the db_adapter.go file

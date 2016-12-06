@@ -8,9 +8,6 @@ import (
 	"os"
 )
 
-
-
-
 func main() {
 
 	Server := NewServer()

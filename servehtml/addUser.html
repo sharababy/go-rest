@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+   <head>
+
+      <meta charset = "UTF-8">
+      <title>Wandr Admin DashBoard</title>
+      <link rel="stylesheet" type="text/css" href="/resources/main.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   </head>
+
+
+
+   <body>
+      
+   	<nav>   
+           
+			<h1>Wandr Admin DashBoard</h1>
+			
+			<user> Welcome User</user>
+
+			<sideNav>
+
+				<a href="/addUser" class="sideNavElement" > ADD NEW USER </a>
+				<a href="/" class="sideNavElement"> DISPLAY USERS </a>
+				<a href="/settings" class="sideNavElement"> YOUR SETTINGS </a>
+
+			</sideNav>
+    </nav>
+
+    <content>
+
+        <contentHeading>Add New User</contentHeading>
+        
+
+    </content>
+
+
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+
+
+            $.getJSON('http://localhost:3000/', function( data ){
+
+                  console.log(data);
+
+              });
+
+          });
+    </script>
+
+
+   </body>
+
+</html>

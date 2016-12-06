@@ -28,22 +28,47 @@ func Insert_User(DB_Name string , Collection_Name string, session *mgo.Session, 
 	return nil
 }
 
+
+func DumpAll( DB_Name string, Collection_Name string, session *mgo.Session ) ([]User , error) {
+
+	var allUsers []User
+
+	f := session.DB(DB_Name).C(Collection_Name)
+
+
+	err := f.Find(nil).All(&allUsers)
+
+
+		if(err!=nil){
+        	
+        		return allUsers , err 
+        	} else{
+        		return allUsers , nil
+        
+
+    		}
+
+}
+
+
 func Find_User( DB_Name string, Collection_Name string, session *mgo.Session,find_type string ,find_with string) (User,error) {
 
 		var lookfor User
 
-       	f := session.DB(DB_Name).C(Collection_Name)
+			f := session.DB(DB_Name).C(Collection_Name)
 
+			FindWith := bson.M{find_type : find_with}
 
-		FindWith := bson.M{find_type : find_with}
+        	err := f.Find(FindWith).One(&lookfor)
 
-        err := f.Find(FindWith).One(&lookfor)
+        	if(err!=nil){
+        	
+        		return lookfor , err 
+        	} else{
+        		return lookfor , nil
+        
 
-        if(err!=nil){
-        	return lookfor , err 
-        } else{
-        	return lookfor , nil
-        }
+    		}
 }
 
 func Delete_User( DB_Name string, Collection_Name string, session *mgo.Session,find_type string ,find_with string) (error) {

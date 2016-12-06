@@ -25,8 +25,6 @@ func NewServer() http.Handler {
 		 	server.Handle(route.Method , route.Url , route.Function)
 		 }
 
-		// server.ServeFiles("/resources/*filepath", http.Dir("./resources"))
-
 		 return server
 
 }
@@ -45,6 +43,11 @@ var listof = Routers{
 		"GET",
 		FindJSON,
 		"/:find_type/:find_with",
+	},
+	Route{
+		"GET",
+		DumpJSON,
+		"/",
 	},
 	Route{
 		"DELETE",

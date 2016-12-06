@@ -16,7 +16,7 @@ import(
 //	Every User can be fit into this common data type knows as User
 // More meta data to be added here ::..>
 
-const db string = "mongodb://user1:12345678@ds119738.mlab.com:19738/wandr"
+const db string = "mongodb://user1:12345678@ds119738.mlab.com:19738/wandr" //"mongodb://localhost:27017"
 
 
 
@@ -147,6 +147,32 @@ func DeleteJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
 	}
 }
 
+func DumpJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
+
+
+        session := CreateSession(db)
+
+
+           var all []User
+
+        all , err := DumpAll("wandr","endusers",session)
+
+         if(err!=nil){
+                
+                fmt.Fprintf(w,"Error, Unable to find user.")
+                fmt.Println(err)
+        
+          } else{
+      
+                w.Header().Set("Content-Type", "application/json")                 
+
+
+                fmt.Fprintf(w,"%q",json.NewEncoder(w).Encode(all))
+
+                fmt.Println(all)
+        }
+}
+
 
 func FindJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
 
@@ -154,24 +180,14 @@ func FindJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
 
 	find_with := p.ByName("find_with") // it extracts the value of find_with paramater from the url
 
-	decoder := json.NewDecoder(r.Body) //  JSON decoder  for request.Body to convert to JSON
-
-	var Find_user User
-
-    err := decoder.Decode(&Find_user)
-
-    if err != nil {	// error check for Decoder
-        panic(err)
-    }
-
-    defer r.Body.Close()
-
     //CreateSession() is defined in the db_adapter.go file
     //it returns a *mgo.Session type 
     //it establishes a session between the MongoDB instance and the golang app
 
     session := CreateSession(db)
 
+    
+    
 
     //Find_User is a CRUD helper function that is defined in the db_adapter.go file
     //it take db name , collection name , session and find_with and find_typr , User struct as input
@@ -184,52 +200,11 @@ func FindJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
    		fmt.Println(errr)
    	} else{
     	fmt.Fprintf(w,"Successfully found user:\n");
-    	fmt.Fprintf(w,"User details - \n Name - %s \n Phone - %s \n Email - %s",Find_user.Name,Find_user.Phone,Find_user.Email)
+    	fmt.Fprintf(w,"%q",Find_user)
 
-    	fmt.Println("User details - \n Name - ",Find_user.Name,"\n Phone - ", Find_user.Phone,"\n Email - ",Find_user.Email)
-	}
-}
-
-
-/*
-func Home(w http.ResponseWriter , r *http.Request){
-
-			ip := r.RemoteAddr
-			file := r.URL.Path
-			filename:=file[1:]
-
-
-
-			if len(filename)==0 {
-				ServeHome(w,r)
-				fmt.Println(ip," requested home page...")
-
-
-			/* }  else if filename == "register" {
-				message := ""
-				Register(w,r,nil,message)
-
-			
-			} else{  
-				http.ServeFile(w,r,filename+".html")
-				fmt.Println(ip," requested",filename,"page...")	
-			}
-	
-
-}
-
-
-
-
-func ServeHome(w http.ResponseWriter, r *http.Request){
-
-		
-
-					t,_ := template.ParseFiles("usr_mnt_addusr.html")
-		
-
-					t.Execute(w,nil)
-
+    	fmt.Println(Find_user)
 	}
 
-	*/
+
+
+}

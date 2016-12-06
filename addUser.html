@@ -31,22 +31,27 @@
     <content>
 
         <contentHeading>Add New User</contentHeading>
-        
+        <div class="name"></div>
+        <div class="phone"></div>
 
     </content>
 
 
     <script type="text/javascript">
         
-        $(document).ready(function () {
-
-
-            $.getJSON('http://localhost:3000/', function( data ){
-
-                  console.log(data);
-
+        $(document).ready(function() {
+          
+          $.ajax({
+          
+            url: "https://limitless-dusk-31587.herokuapp.com/"
+    
+              }).then(function(data) {
+       
+                  $('.name').append(data.Name);
+                  $('.phone').append(data.Phone);
+              
               });
-
+          
           });
     </script>
 

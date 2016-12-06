@@ -166,10 +166,11 @@ func DumpJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
       
                 w.Header().Set("Content-Type", "application/json")                 
 
+                user, err := json.Marshal(all)
 
-                fmt.Fprintf(w,"%q",json.NewEncoder(w).Encode(all))
+                w.Write(user)
 
-                fmt.Println(all)
+                fmt.Println(user)
         }
 }
 
@@ -199,10 +200,14 @@ func FindJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
    		fmt.Fprintf(w,"Error, Unable to find user.")
    		fmt.Println(errr)
    	} else{
-    	fmt.Fprintf(w,"Successfully found user:\n");
-    	fmt.Fprintf(w,"%q",Find_user)
 
-    	fmt.Println(Find_user)
+      w.Header().Set("Content-Type", "application/json")  
+    	
+      user, err := json.Marshal(Find_user)
+
+      w.Write(user)
+
+    	fmt.Println(user)
 	}
 
 

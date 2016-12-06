@@ -166,8 +166,10 @@ func DumpJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
       
                 w.Header().Set("Content-Type", "application/json")                 
 
-                user, err := json.Marshal(all)
-
+                user, errr := json.Marshal(all)
+                if(errr!=nil){
+                  fmt.Println(errr);
+                }
                 w.Write(user)
 
                 fmt.Println(user)
@@ -205,6 +207,9 @@ func FindJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
     	
       user, err := json.Marshal(Find_user)
 
+      if(err!=nil){
+        fmt.Println(err)
+      }
       w.Write(user)
 
     	fmt.Println(user)

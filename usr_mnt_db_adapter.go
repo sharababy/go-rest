@@ -108,23 +108,35 @@ func Update_User(DB_Name string, Collection_Name string, session *mgo.Session,fi
 		// this is done to ensure that the if any field is left blank in JSON
 		// it should not be left blank in the db, it should be replaced by the 
 		//old values in the db
-		if(new_data.Name==""){ 
-				new_data.Name = old_data.Name;
+		if(new_data.UserId==""){ 
+				new_data.UserId = old_data.UserId;
+		}
+
+		if(new_data.FullName==""){
+				new_data.FullName = old_data.FullName;
 		}
 
 		if(new_data.Phone==""){
 				new_data.Phone = old_data.Phone;
 		}
-
 		if(new_data.Email==""){
 				new_data.Email = old_data.Email;
+		}
+		if(new_data.ClientName==""){
+				new_data.ClientName = old_data.ClientName;
+		}
+		if(new_data.Status==""){
+				new_data.Status = old_data.Status;
 		}
 	}
 
 	change := bson.M{"$set": bson.M{
-		"Name" : new_data.Name,
+		"UserId" : new_data.UserId,
 		"Phone" : new_data.Phone,
 		"Email" : new_data.Email,
+		"FullName" : new_data.FullName,
+		"Status" : new_data.Status,
+		"ClientName" : new_data.ClientName,
 		},	 
 	}
 

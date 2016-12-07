@@ -27,7 +27,7 @@ type User struct{
 	Phone string `bson:"Phone" json:"Phone" `
 	Email string `bson:"Email" json:"Email" `
   ClientName string `bson:"ClientName" json:"ClientName" `
-  Status int `bson:"Status" json:"Status" `
+  Status string `bson:"Status" json:"Status" `
   
 }
 
@@ -118,7 +118,7 @@ func UpdateJSON(w http.ResponseWriter , r *http.Request , p httprouter.Params){
    	} else{
     	fmt.Fprintf(w,"Successfully Updated")
 
-    	fmt.Println("New details - \n Name - ",new_user.Name,"\n Phone - ", new_user.Phone,"\n Email - ",new_user.Email)
+    	fmt.Println("New details - \n FullName - ",new_user.FullName,"\n Phone - ", new_user.Phone,"\n Email - ",new_user.Email,"\n UserId - ",new_user.Email,"\n ClientName - ",new_user.ClientName,"\n Status - ",new_user.Status) 
 	}
 }
 

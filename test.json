@@ -1,5 +1,9 @@
 {
-	"Name"  : "Vedant",
-	"Phone" : "95000",
-	"Email" : "bassi.vdt"
+
+	"UserId" : "B23331",
+	"FullName" : "Rakesh",
+	"Phone": "98827483",
+	"Email": "ba@kjdsnc.com",
+  	"ClientName":"ABC Hotel",
+  	"Status":"1"
 }

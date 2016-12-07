@@ -22,10 +22,13 @@ const db string = "mongodb://user1:12345678@ds119738.mlab.com:19738/wandr" //"mo
 
 type User struct{ 
 
-	Name string `bson:"Name" json:"Name" `
+  UserId string `bson:"UserId" json:"UserId" `
+	FullName string `bson:"FullName" json:"FullName" `
 	Phone string `bson:"Phone" json:"Phone" `
 	Email string `bson:"Email" json:"Email" `
-
+  ClientName string `bson:"ClientName" json:"ClientName" `
+  Status int `bson:"Status" json:"Status" `
+  
 }
 
 //This function receives the data in application/json encoding 

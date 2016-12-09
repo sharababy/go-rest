@@ -12,27 +12,20 @@ import(
 )
 
 
-var err_insert chan error
-
-func Insert_User(DB_Name string , Collection_Name string, session *mgo.Session, data User ) <-chan error{
-
-go func() {
+func Insert_User(DB_Name string , Collection_Name string, session *mgo.Session, data User ) error{
 
 	c :=session.DB(DB_Name).C(Collection_Name)
 
 	err := c.Insert(data)
 
-	err_insert <- err
-
 	if(err!=nil){
 		log.Println(err)
+		return err
 	}
 	//fmt.Println("Inserted doc..")
 	defer session.Close()
 
-
-	}()
-	return err_insert
+	return nil
 }
 
 

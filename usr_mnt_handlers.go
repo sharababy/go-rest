@@ -16,7 +16,7 @@ import(
 //	Every User can be fit into this common data type knows as User
 // More meta data to be added here ::..>
 
-const db string = "mongodb://localhost:27017"//"mongodb://user1:12345678@ds119738.mlab.com:19738/wandr"
+const db string = "mongodb://user1:12345678@ds119738.mlab.com:19738/wandr"//"mongodb://localhost:27017"
 
 var err_channel chan error
 

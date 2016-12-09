@@ -16,9 +16,9 @@ import(
 //	Every User can be fit into this common data type knows as User
 // More meta data to be added here ::..>
 
-const db string = "mongodb://user1:12345678@ds119738.mlab.com:19738/wandr" //"mongodb://localhost:27017"
+const db string = "mongodb://localhost:27017"//"mongodb://user1:12345678@ds119738.mlab.com:19738/wandr"
 
-
+var err_channel chan error
 
 type User struct{ 
 
@@ -61,13 +61,17 @@ func ReceiveJSON(w http.ResponseWriter , r *http.Request , _ httprouter.Params){
     //Insert_User is a CRUD helper function that is defined in the db_adapter.go file
     //it take db name , collection name , session and User struct as input
     // it returns type error
-    err = Insert_User("wandr","endusers",session,new_user)
 
-    if(err!=nil){
+    err_channel = make(chan error)
+
+
+    err_channel := Insert_User("wandr","endusers",session,new_user)
+
+    if(err_channel!=nil){
    		fmt.Fprintf(w,"Error, Unable to insert field")
    	
    	}else{
-    	//fmt.Println("New details - \n Name - ",new_user.Name,"\n Phone - ", new_user.Phone,"\n Email - ",new_user.Email)
+    	fmt.Println("New details - ",new_user)
 	}
 }
 

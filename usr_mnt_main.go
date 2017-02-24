@@ -11,8 +11,6 @@ import (
 func main() {
 
 	Server := NewServer()
-	
-	
 
 	fmt.Println("Hosted on port",GetPort())
 	log.Fatal(http.ListenAndServe(GetPort(),Server))
